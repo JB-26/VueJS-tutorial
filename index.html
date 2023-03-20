@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Vue JS 3 Basics</title>
+        <style>
+        	.box {
+        		background-color: purple;
+        		height: 200px;
+        		width: 200px;
+        	}
+        	.box.two {
+        		background-color: red;
+        	}
+
+        	.box.three {
+        		background-color: blue;
+        	}
+        	[v-cloak] {
+        		display: none;
+        	}
+        </style>
+    </head>
+    <body>
+    	<!-- v-clock, a utility that will hide anything from rendering until the Vue application is ready-->
+    	<div id='app' v-cloak>
+    		{{ greeting }}
+    		<!--v-model will be bound to a variable that we pass as an argument -->
+    		<!-- this is a directive -->
+    		<!-- @keyup is an event -->
+    		<input @keyup.enter="greet(greeting + '!!!')" v-model="greeting" />
+
+    		<hr />
+
+    		<!-- this is an event!-->
+    		<!-- shorthand version-->
+    		<button @click='toggleBox'>Toggle Box</button>
+    		<!--<button v-on:click='isVisible = !isVisible'>Toggle Box</button>-->
+
+    		<!-- this will NOT render an element in the DOM-->
+    		<div v-if="isVisible" class="box"></div>
+    		<!--<div v-else-if="isVisible2" class="box two"></div>-->
+    		<!--<div v-else="isVisible" class="box three"></div>-->
+    		<!-- this will still render the element in the DOM-->
+    		<!--<div v-show="isVisible" class="box"></div>-->
+    	</div>
+    	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    	<script>
+    		let app = Vue.createApp({
+    			data: function() {
+    				return {
+    					// Vue looks into this data object we're returning, to see if there is a variable called greeting
+    					// then displays it!
+    					greeting: 'Hello Vue 3!',
+    					isVisible: false,
+    					//isVisible2: true
+    				}
+    			},
+    			methods: {
+    				// this method is available anywhere in the Vue JS template
+    				toggleBox() {
+    					this.isVisible = !this.isVisible
+    				},
+    				greet(greeting) {
+    					console.log(greeting)
+    				}
+    			}
+    		})
+    		// connects to the div, to display and interact with DOM elements in the div
+    		app.mount('#app')
+    	</script>
+    </body>
+</html>
