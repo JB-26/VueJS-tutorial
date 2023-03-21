@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Form</title>
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" v-cloak>
+      <login-form />
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      let app = Vue.createApp({
+        data: function () {
+          return {
+            // Vue looks into this data object we're returning, to see if there is a variable called greeting
+            // then displays it!
+            greeting: "Hello Vue 3!",
+            isVisible: false,
+            //isVisible2: true
+          };
+        },
+        methods: {
+          // this method is available anywhere in the Vue JS template
+          toggleBox() {
+            this.isVisible = !this.isVisible;
+          },
+          greet(greeting) {
+            console.log(greeting);
+          },
+        },
+      });
+      // self contained component, can use the options above
+      app.component("login-form", {
+        template: `
+		  <div>
+		  	<input type="email" />
+			<input type="password" />
+		  </div>
+		  `,
+      });
+      // connects to the div, to display and interact with DOM elements in the div
+      app.mount("#app");
+    </script>
+  </body>
+</html>

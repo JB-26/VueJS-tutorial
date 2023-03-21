@@ -11,6 +11,7 @@ It's a framework.
 - Helps with scaling
 
 ## Benefits
+
 - Virtual DOM (makes JS applications faster and efficient)
 - Lightweight (10K gzip)
 - Progressive (use it anywhere; small features, replacement for legacy, batteries included for larger applications)
@@ -25,5 +26,5 @@ It's a framework.
 - 2016 version 2
 - 2020 Vue version 3
 
-Currently at 29:21 - Components
-https://youtu.be/FXpIoQ_rT_c?t=1761
+Currently at 39:28 - Component Props
+https://youtu.be/FXpIoQ_rT_c?t=2368
