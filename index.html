@@ -77,19 +77,27 @@
       app.component("login-form", {
         // prevent is an event modifier
         // v-model is a directive to bind a value to a variable
+        // v-bind is a directive that turns HTML attributes into something that can be parsed as JavaScript so you can pass a variable to the child component
+        // shorthand of v-bind is just a colon!
+        // majority of the time, you'll want to pass a variable in when passing a property (prop) to a child component (data or a function)
+
+        // props passed to children are immutable - we cannot change them in the child
         template: `
             <form @submit.prevent="handleSubmit">
                 <h1>{{ title }}</h1>
-                <input type="email" v-model="email" />
-                <input type="password" v-model="password" />
+                <custom-input v-model="email" :label="emailLabel"/>
+                <custom-input v-model="password" :label="passwordLabel"/>
                 <button>Log in</button>
             </form>
             `,
+        components: ["custom-input"],
         data() {
           return {
             title: "Login form",
             email: "",
             password: "",
+            emailLabel: "Email",
+            passwordLabel: "Password",
           };
         },
         methods: {
@@ -97,6 +105,39 @@
             console.log(this.email, this.password);
           },
         },
+      });
+
+      app.component("custom-input", {
+        template: `
+        <label>
+          {{ label }}
+          <input type="text" v-model="inputValue" />
+        </label
+        `,
+        // from parent to child
+        // modelValue allows for variables to be passed into a child component
+        props: ["label", "modelValue"],
+        computed: {
+          // we can put variable names here as keys
+          inputValue: {
+            get() {
+              return this.modelValue;
+            },
+            set(value) {
+              //console.log(value);
+              // allows you to emit events that other components can listen to
+              // can use custom events, but this is using an event Vue has
+              // first argument is the event
+              // second argument is the value being passed through
+              this.$emit("update:modelValue", value);
+            },
+          },
+        },
+        //data() {
+        //  return {
+        //    inputValue: "",
+        //  };
+        //},
       });
       // connects to the div, to display and interact with DOM elements in the div
       app.mount("#app");

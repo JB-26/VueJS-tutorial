@@ -26,5 +26,5 @@ It's a framework.
 - 2016 version 2
 - 2020 Vue version 3
 
-Currently at 39:28 - Component Props
-https://youtu.be/FXpIoQ_rT_c?t=2368
+Currently at 57:30 - Loops
+https://youtu.be/FXpIoQ_rT_c?t=3450
