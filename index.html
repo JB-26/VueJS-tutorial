@@ -82,9 +82,12 @@
         // majority of the time, you'll want to pass a variable in when passing a property (prop) to a child component (data or a function)
 
         // props passed to children are immutable - we cannot change them in the child
+        // it's important to use the key prop when looping, this will uniquely identify elements
+        // this can help with performance and preventing bugs
         template: `
             <form @submit.prevent="handleSubmit">
                 <h1>{{ title }}</h1>
+                <p v-for="(str, i) in inputs" :key="i">{{ str }}</p>
                 <custom-input v-model="email" :label="emailLabel"/>
                 <custom-input v-model="password" :label="passwordLabel"/>
                 <button>Log in</button>
@@ -94,6 +97,7 @@
         data() {
           return {
             title: "Login form",
+            inputs: ["email", "password", "name"],
             email: "",
             password: "",
             emailLabel: "Email",
