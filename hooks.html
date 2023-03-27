@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hooks</title>
+    <style>
+      .box {
+        background-color: purple;
+        height: 200px;
+        width: 200px;
+      }
+      .box.two {
+        background-color: red;
+      }
+
+      .box.three {
+        background-color: blue;
+      }
+      input {
+        display: block;
+        margin: 10px;
+      }
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- v-clock, a utility that will hide anything from rendering until the Vue application is ready-->
+    <div id="app" v-cloak>
+      <!--v-model will be bound to a variable that we pass as an argument -->
+      <!-- this is a directive -->
+      <!-- @keyup is an event -->
+
+      <!-- this is an event!-->
+      <!-- shorthand version-->
+      <button @click="toggleBox">Toggle Box</button>
+      <test-box v-if="isVisible" class="box" />
+      <!--<button v-on:click='isVisible = !isVisible'>Toggle Box</button>-->
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      let app = Vue.createApp({
+        data: function () {
+          return {
+            isVisible: false,
+          };
+        },
+        methods: {
+          // this method is available anywhere in the Vue JS template
+          toggleBox() {
+            this.isVisible = !this.isVisible;
+          },
+        },
+        // lifecycle hook
+        updated() {
+          console.log("updated");
+        },
+      });
+      app.component("test-box", {
+        template: `
+		 <div class="box"></div>`,
+        // lifecycle hooks
+        created() {
+          console.log("created");
+        },
+        mounted() {
+          console.log("mounted");
+        },
+        unmounted() {
+          console.log("unmounted");
+        },
+      });
+      // connects to the div, to display and interact with DOM elements in the div
+      app.mount("#app");
+    </script>
+  </body>
+</html>

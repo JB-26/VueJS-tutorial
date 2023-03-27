@@ -26,5 +26,16 @@ It's a framework.
 - 2016 version 2
 - 2020 Vue version 3
 
-Currently at 57:30 - Loops
-https://youtu.be/FXpIoQ_rT_c?t=3450
+# What is a lifecycle hook?
+
+A function that is triggered to run at a specific point in the lifecycle of a component.
+
+## Why use lifecycle hooks?
+
+- Check if user is authorised
+- API calls
+- Creating or removing events
+- Getting or cleaning up data
+
+Currently at 1:16:50 - New application!
+https://youtu.be/FXpIoQ_rT_c

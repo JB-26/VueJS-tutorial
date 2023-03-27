@@ -84,12 +84,12 @@
         // props passed to children are immutable - we cannot change them in the child
         // it's important to use the key prop when looping, this will uniquely identify elements
         // this can help with performance and preventing bugs
+
+        // example of looping <p v-for="(str, i) in inputs" :key="i">{{ str }}</p>
         template: `
             <form @submit.prevent="handleSubmit">
                 <h1>{{ title }}</h1>
-                <p v-for="(str, i) in inputs" :key="i">{{ str }}</p>
-                <custom-input v-model="email" :label="emailLabel"/>
-                <custom-input v-model="password" :label="passwordLabel"/>
+                <custom-input v-for="(input, i) in inputs" :key="i" v-model="input.value" :label="input.label" :type="input.type"/>
                 <button>Log in</button>
             </form>
             `,
@@ -97,16 +97,23 @@
         data() {
           return {
             title: "Login form",
-            inputs: ["email", "password", "name"],
-            email: "",
-            password: "",
-            emailLabel: "Email",
-            passwordLabel: "Password",
+            inputs: [
+              {
+                label: "Email",
+                value: "",
+                type: "email",
+              },
+              {
+                label: "Password",
+                value: "",
+                type: "password",
+              },
+            ],
           };
         },
         methods: {
           handleSubmit() {
-            console.log(this.email, this.password);
+            console.log(this.inputs[0].value, this.inputs[1].value);
           },
         },
       });
@@ -115,12 +122,12 @@
         template: `
         <label>
           {{ label }}
-          <input type="text" v-model="inputValue" />
-        </label
+          <input :type="type" v-model="inputValue" />
+        </label>
         `,
         // from parent to child
         // modelValue allows for variables to be passed into a child component
-        props: ["label", "modelValue"],
+        props: ["label", "type", "modelValue"],
         computed: {
           // we can put variable names here as keys
           inputValue: {
