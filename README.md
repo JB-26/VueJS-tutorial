@@ -37,5 +37,5 @@ A function that is triggered to run at a specific point in the lifecycle of a co
 - Creating or removing events
 - Getting or cleaning up data
 
-Currently at 1:16:50 - New application!
-https://youtu.be/FXpIoQ_rT_c
+Currently at 1:26:46 - Adding items to the cart
+https://youtu.be/FXpIoQ_rT_c?t=5206
