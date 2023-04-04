@@ -37,5 +37,5 @@ A function that is triggered to run at a specific point in the lifecycle of a co
 - Creating or removing events
 - Getting or cleaning up data
 
-Currently at 1:43:23 - Dynamic content
-https://youtu.be/FXpIoQ_rT_c?t=6203
+Currently at 2:01:21 - Dynamic content - updating total in side bar
+https://youtu.be/FXpIoQ_rT_c?t=7281
